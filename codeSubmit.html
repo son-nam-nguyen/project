@@ -1,0 +1,232 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container-fluid" style="display: flex; flex-direction: column;">
+        <div class="row mt-5" style="flex-grow: 1;">
+            <!-- <h1 class="text-center mt-2">
+                Exercises
+            </h1> -->
+            <!-- CodeMirror CSS -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+            <!-- CodeMirror JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+            <!-- CodeMirror Theme -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/dracula.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/monokai.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/material.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/nord.min.css">
+                
+
+            <!-- CodeMirror Language Modes -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
+            <!-- Java -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/python/python.min.js"></script>
+            <!-- Python -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/sql/sql.min.js"></script>
+            <!-- SQL -->
+
+            <!-- Autocomplete Addons -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.js"></script>
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.css">
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/anyword-hint.min.js"></script>
+
+            <!-- Body -->
+            <div class="container-fluid" style="height: 85vh;">
+                <div class="row" style="height: 100%; display: flex; flex-wrap: nowrap;">
+                    <!-- Left Panel -->
+                    <div class="col-md-3 text-white d-flex flex-column position-relative" id="leftPanel"
+                        style="height:100%; font-size:0.9em;">
+                        <div class="resizer" id="resizer"></div>
+                        <div id="leftPanelContent">
+                            <!-- Tab Content -->
+                            <div class="tab-content" id="leftPanelTabContent">
+                                <div class="tab-pane fade show active" id="description" role="tabpanel">
+                                    <div class="border-bottom border-secondary" style="padding-bottom: 10px;">
+                                        <span class="badge rounded-pill"
+                                            style="background-color:#55ac63; font-size:1.1em; width:100%; margin-top: 10px;">
+                                            easy
+                                        </span>
+                                    </div>
+                                    <h2 class="mt-3 mb-4 code-title">Two Sum</h2>
+                                    <div class="description">
+                                        <p>Given an array of integers nums and an integer target, return indices of the
+                                            two numbers such that they add up to target.
+
+                                            You may assume that each input would have exactly one solution, and you may
+                                            not use the same element twice.
+
+                                            You can return the answer in any order.</p>
+                                    </div>
+                                    <div class="examples mt-4">
+                                        <h5 class="mb-3">Write the queries in the following structure:</h5>
+                                        <p>sql_1: ...</p>
+                                    </div>
+                                </div>
+
+                                <!-- Search Results Tab -->
+                                <div class="tab-pane fade" id="searchResults" role="tabpanel">
+                                    <iframe id="searchFrame" style="width: 100%; height: 100%; border: none;"></iframe>
+                                </div>
+                            </div>
+
+                            <!-- Phần tìm kiếm Google -->
+                            <div class="search-container" style="border-bottom: none;">
+                                <div class="input-group">
+                                    <input type="text" id="searchInput" class="form-control form-control-sm"
+                                        placeholder="Search on Google...">
+                                    <button class="btn btn-primary" type="button" id="searchButton">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Tab Navigation -->
+                            <ul class="nav nav-tabs nav-fill" style="border-bottom: none;" id="leftPanelTabs"
+                                role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                                        data-bs-target="#description" type="button" role="tab">
+                                        Description
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="search-tab" data-bs-toggle="tab"
+                                        data-bs-target="#searchResults" type="button" role="tab">
+                                        Search
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Center Panel -->
+                    <div class="col-md-6 p-0 bg-dark text-white d-flex flex-column" id="centerPanel"
+                        style="overflow-y:auto; flex: 1;">
+                        <form id="code-form" method="POST" action="/exercises/submit/120/0/0/"
+                            class="h-100 d-flex flex-column">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                value="HfxjrSlfLR32bC9CQ0AeUi9pecn6YwzMjC52rgaHg3akATZaOfVTYuO7KVt7kOzh">
+                            <div class=" p-3 h-100 d-flex flex-column middle" style="background: #1f1f1f;">
+                                <div class="btn-toolbar mb-3" role="toolbar">
+                                    <div class="btn-group me-auto" role="group">
+                                        <select id="language-select" class="form-select form-select-lg"
+                                            style="min-width: 8rem; background-color: #3e4451; color: whitesmoke; border-color: #181a1f;"
+                                            name="language">
+                                            <option value="mysql">MySQL</option>
+                                            <option value="sql">SQL</option>
+                                            <option value="java">Java</option>
+                                            <option value="python">Python</option>
+                                        </select>
+                                    </div>
+                                    <button href="/exercise" id="back-to-exercise-list" class="btn btn-sm ms-2"
+                                            style="background-color: #3e4451; color: #abb2bf; border-color: #181a1f; margin-right: 10px;">
+                                            <i class="fa fa-arrow-left"></i> Back to exercise list
+                                        </button> 
+                                    <div class="btn-group" role="group">
+                                          
+                                        <button type="button" id="theme-toggle-button" class="btn btn-lg"
+                                            style="background-color: #3e4451; color: #abb2bf; border-color: #181a1f;">
+                                            <i class="fa fa-moon"></i> Light
+                                        </button>
+                                        <button type="button" id="reset-button" class="btn btn-lg ms-2"
+                                            style="background-color: #3e4451; color: #abb2bf; border-color: #181a1f;">
+                                            <i class="fa fa-redo-alt"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                                <textarea id="code-editor" name="code" class="form-control h-100" style="background-color: #1f1f1f; 
+                                           color: #abb2bf;
+                                           font-family: 'Fira Code', monospace;
+                                           font-size: 14px;
+                                           line-height: 1.5;
+                                           padding: 15px;
+                                           border: 1px solid #1f1f1f;
+                                           border-radius: 4px;
+                                           resize: none;
+                                           display: none;">
+                                </textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Panel -->
+                    <div class="col-md-3 p-3 text-white d-flex flex-column" id="rightPanel"
+                        style="overflow-y:auto; height:100%;">
+                        <div class="btn-group mb-3" role="group">
+                            <button type="button" id="precheck-button" class="btn btn-success btn-lg">
+                                <i class="fa fa-terminal"></i> Pre-check
+                            </button>
+                            <button type="button" id="clear-button" class="btn btn-danger btn-lg mx-2">
+                                <i class="fa fa-eraser"></i> Clear
+                            </button>
+                            <a href="/exercises/" class="btn btn-primary btn-lg">
+                                <i class="bi bi-send"></i> Submit
+                            </a>
+                        </div>
+                        <div id="output" class="p-3 rounded" style="overflow:auto; font-size:0.85em;">
+                            <!-- Output log will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal confirm  -->
+            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmModalLabel">Cofirm Submit Code</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to submit the code?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="confirm-submit">Submit Code</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Initialize CodeMirror -->
+            <script>
+
+            </script>
+
+
+        </div>
+    </div>
+    </div>
+
+    <!-- <button onclick="scrollToTop()" id="scrollToTopButton" title="Go to top" style="display: none;">
+        <i class="fas fa-arrow-up"></i>
+    </button> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <style>
+
+    </style>
+</body>
+<script src="script.js"></script>
+
+</html>

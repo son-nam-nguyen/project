@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Submission UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px 20px;
+            margin: 10px !important;
+        }
+
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin: 10px auto !important;
+        }
+        
+        .title {
+            font-size: 30px;
+            font-weight: 600;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            margin-top: 0px;
+        }
+
+        .score-box {
+            gap: 20px;
+        }
+
+        .score {
+            background: #f1f8ff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-align: left;
+            font-weight: 600;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            color: #1a73e8;
+        }
+
+        .score-number {
+            background: #1a73e8;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+
+        .message-box {
+            background: #fff8f0;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 5px solid #f5a623;
+            color: #664d03;
+            font-size: 14px;
+        }
+
+        .message-box strong {
+            color: #664d03;
+            font-weight: 600;
+        }
+
+        .code-area {
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+
+        .input-area {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #dfe1e5;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #1a73e8;
+            outline: none;
+        }
+
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background: #1557b0;
+        }
+
+        .output {
+            margin-top: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 13px;
+            color: #333;
+            border: 1px solid #dfe1e5;
+        }
+
+        .CodeMirror {
+            height: auto;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Submission successful</h1>
+        <div class="score-box">
+            <div class="score"><span class="score-number">4</span> TEST CASE POINTS </div>
+            <div class="score"><span class="score-number">5</span> TIME PERIOD POINTS</div>
+            <div class="score"><span class="score-number">9</span> TOTAL POINTS</div>
+        </div>
+
+        <div class="message-box" style="margin-bottom: 70px;">
+            <strong>Runtime not calculated</strong>
+            <p>Your solution needs to pass all the test cases for the runtime to be calculated.</p>
+        </div>
+
+        <textarea id="codeEditor" style="">
+import java.util.*;
+import java.io.*;
+
+class Main {
+    public static String QuestionsMarks(String str) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '?') {
+                count++;
+            }
+        }
+        if (count == 3) {
+            return "true";
+        }
+        else {      
+            return "false";
+        }
+    }
+}
+        </textarea>
+
+        <div class="input-area">
+            <input type="text" id="inputText" placeholder='Enter input here...'>
+            <button onclick="runCode()">RUN CODE</button>
+        </div>
+        <div class="output" id="output">Output logs will appear here</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
+
+    <script>
+        var editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
+            mode: "text/x-java",
+            theme: "monokai",
+            lineNumbers: true,
+            autoCloseBrackets: true,
+            matchBrackets: true,
+            indentUnit: 4,
+            readOnly: true,
+            cursorBlinkRate: -1
+        });
+
+        function runCode() {
+            const input = document.getElementById("inputText").value;
+            if (!input.trim()) {
+                document.getElementById("output").innerText = "Error: Please enter input before running code!";
+                return;
+            }
+            const code = editor.getValue();
+            document.getElementById("output").innerText = "Processing input: " + input + "\nCode:\n" + code;
+        }
+    </script>
+</body>
+
+</html>

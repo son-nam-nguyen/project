@@ -1,0 +1,668 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: #e4e4e4;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#leftPanel {
+    height: 100%;
+    font-size: 0.875em;
+    width: 25%;
+    min-width: 200px;
+    max-width: 450px;
+    transition: width 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#centerPanel {
+    flex-grow: 1;
+    transition: width 0.3s ease;
+    width: calc(100% - 50%);
+    background-color: #1f1f1f;
+    overflow: hidden !important;
+}
+
+#rightPanel {
+    width: 25% !important;
+    transition: width 0.3s ease;
+    background-color: black !important;
+    color: #e4e4e4;
+}
+
+#toggleLeftPanel {
+    margin-right: -15px;
+}
+
+.badge {
+    background-color: #55ac63;
+    color: white;
+    font-size: 1em;
+    width: 20%;
+}
+
+.col-md-6 {
+    overflow-y: auto;
+    height: 100%;
+    background-color: rgb(18, 19, 17);
+}
+
+#output {
+    overflow: auto;
+    font-size: 0.75em;
+    background-color: black;
+    color: #e4e4e4;
+}
+
+.modal-content {
+    background-color: #f8f9fa;
+}
+
+#toggleLeftPanel {
+    position: relative;
+    /* Thay đổi từ absolute sang relative */
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #314251;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#toggleLeftPanel:hover {
+    background-color: #f8f9fa;
+}
+
+.resizer {
+    width: 5px;
+    height: 100%;
+    background-color: #ccc;
+    cursor: ew-resize;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+* {
+    user-select: none;
+    /* Ngăn người dùng vô tình chọn chữ khi kéo */
+}
+
+.resizer {
+    pointer-events: auto;
+    touch-action: none;
+    /* Tắt phản hồi mặc định của trình duyệt */
+}
+
+.search-container {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.search-container .input-group {
+    max-width: 100%;
+}
+
+.search-container input {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+    color: #fff;
+}
+
+.search-container input::placeholder {
+    color: #a0aec0;
+}
+
+.search-container input:focus {
+    background-color: #2d3748;
+    border-color: #63b3ed;
+    color: #fff;
+    box-shadow: none;
+}
+
+.search-container .btn-primary {
+    background-color: #4299e1;
+    border: none;
+    padding: 0.375rem 0.75rem;
+}
+
+.search-container .btn-primary:hover {
+    background-color: #3182ce;
+}
+
+/* Style cho tabs trong left panel */
+#leftPanelTabs .nav-link {
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+#leftPanelTabs .nav-link:hover {
+    border-color: transparent;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#leftPanelTabs .nav-link.active {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: transparent;
+}
+
+/* Style cho tab content */
+#leftPanelTabContent {
+    flex-grow: 1;
+    overflow-y: hidden;
+    /* Ẩn thanh cuộn */
+    overflow-x: hidden;
+}
+
+#searchResults {
+    height: 100%;
+    background-color: #1e2937;
+    padding: 10px;
+}
+
+#searchFrame {
+    min-height: 600px;
+    background-color: #fff;
+    transform: scale(0.8);
+    transform-origin: top left;
+    width: 125% !important;
+    height: 125% !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Đảm bảo left panel content có chiều cao đầy đủ */
+#leftPanelContent {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Đảm bảo các phần tử được phân bố đều */
+}
+
+/* Style cho nút toggle theme */
+#theme-toggle-button {
+    position: relative;
+    overflow: hidden;
+    background: #3e4451;
+    border: 1px solid #181a1f;
+    color: #abb2bf;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle-button.light-mode {
+    background: #f8f9fa;
+    border-color: #dee2e6;
+    color: #333;
+}
+
+#theme-toggle-button:hover {
+    opacity: 0.9;
+}
+
+/* Hiệu ứng ripple cho nút theme */
+#theme-toggle-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+#theme-toggle-button:hover::before {
+    left: 100%;
+}
+
+/* Điều chỉnh kích thước nút */
+.btn-lg {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.9rem !important;
+}
+
+#language-select {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.9rem !important;
+    height: auto !important;
+}
+
+.btn-group {
+    gap: 0.3rem;
+}
+
+/* Điều chỉnh icon trong nút */
+.btn i {
+    font-size: 0.9rem;
+}
+
+/* Thay đổi màu sắc của dòng số */
+.CodeMirror-linenumbers {
+    background-color: #1f1f1f !important;
+}
+
+.CodeMirror-scroll {
+    background-color: #1f1f1f;
+}
+
+.CodeMirror {
+    background-color: #1f1f1f;
+}
+
+/* Light theme */
+body.light-theme {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+body.light-theme #leftPanel {
+    background-color: #e8e6e6;
+    color: #333;
+    border-right: 2px solid #1e1e1e;
+    border-bottom: 1px solid #1e1e1e;
+    border-top: 1px solid #1e1e1e;
+}
+
+body.light-theme #centerPanel {
+    background-color: #ffffff;
+    border-bottom: 1px solid #1e1e1e;
+    border-top: 1px solid #1e1e1e;
+}
+
+body.light-theme #rightPanel {
+    background-color: #f8f9fa !important;
+    color: #333;
+    border-left: 1px solid #1e1e1e;
+    border-bottom: 1px solid #1e1e1e;
+    border-top: 1px solid #1e1e1e;
+}
+
+body.light-theme #leftPanelTabs .nav-link {
+    color: #333 !important;
+}
+
+body.light-theme .CodeMirror {
+    background-color: #ffffff;
+}
+
+body.light-theme .CodeMirror-scroll {
+    background-color: #ffffff;
+}
+
+body.light-theme .CodeMirror-gutters {
+    background-color: #f8f9fa;
+}
+
+body.light-theme .CodeMirror-linenumber {
+    color: #ffffff;
+}
+
+body.light-theme #output {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+body.light-theme .search-container {
+    background-color: #e8e6e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+body.light-theme .search-container input {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    color: #333;
+}
+
+body.light-theme .nav-link {
+    color: #333 !important;
+}
+
+body.light-theme .nav-link.active {
+    background-color: #e9ecef !important;
+    color: #000 !important;
+}
+
+body.light-theme .description,
+body.light-theme .examples {
+    color: #333;
+}
+
+body.light-theme #theme-toggle-button {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    color: #333;
+}
+
+body.light-theme .btn-group .btn {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    color: #333;
+}
+
+body.light-theme #language-select {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    color: #333;
+}
+
+/* Điều chỉnh kích thước nút */
+.btn-lg {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.9rem !important;
+}
+
+#language-select {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.9rem !important;
+    height: auto !important;
+}
+
+.btn-group {
+    gap: 0.3rem;
+}
+
+/* Điều chỉnh icon trong nút */
+.btn i {
+    font-size: 0.9rem;
+}
+
+/* Thay đổi màu sắc của dòng số */
+.CodeMirror-linenumbers {
+    background-color: #ffffff !important;
+}
+
+.CodeMirror-scroll {
+    background-color: #1f1f1f;
+}
+
+.CodeMirror {
+    background-color: #1f1f1f;
+}
+
+/* Light theme */
+body.light-theme .CodeMirror-scroll,
+body.light-theme .CodeMirror {
+    background-color: #ffffff;
+}
+
+.bottom-buttons {
+    padding: 10px;
+    margin-top: auto;
+    /* Đẩy phần buttons xuống dưới cùng */
+    background-color: #314251;
+    /* Giữ màu nền giống left panel */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    /* Thêm đường viền phía trên */
+    border-top: none !important;
+}
+
+.code-title {
+    font-family: 'Roboto' !important;
+}
+
+.description {
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    line-height: 1.6;
+    font-size: 0.9em;
+    color: #e4e4e4;
+}
+
+.examples {
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+    line-height: 1.6;
+    font-size: 0.9em;
+    color: #e4e4e4;
+}
+
+.examples pre {
+    background-color: #2d3748;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+/* Transition cho mượt mà */
+body,
+#leftPanel,
+#centerPanel,
+#rightPanel,
+.CodeMirror,
+#output,
+.search-container,
+.nav-link,
+.btn,
+#language-select {
+    transition: all 0.3s ease !important;
+}
+
+/* Dark theme (mặc định) */
+.btn-group .btn {
+    background-color: #3e4451;
+    color: #abb2bf;
+    border-color: #181a1f;
+}
+
+#language-select {
+    background-color: #3e4451;
+    color: #abb2bf;
+    border-color: #181a1f;
+}
+
+.btn-success {
+    background-color: #98c379 !important;
+    border-color: #7cb36a !important;
+    color: #282c34 !important;
+}
+
+.btn-danger {
+    background-color: #e06c75 !important;
+    border-color: #be5046 !important;
+    color: #fff !important;
+}
+
+.btn-primary {
+    background-color: #61afef !important;
+    border-color: #4fa6ed !important;
+    color: #fff !important;
+}
+
+.description,
+.examples {
+    color: #abb2bf;
+}
+
+.nav-link {
+    color: #abb2bf !important;
+}
+
+.nav-link.active {
+    background-color: #3e4451 !important;
+    color: #fff !important;
+}
+
+/* Light theme */
+body.light-theme .btn-group .btn {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #dee2e6;
+}
+
+body.light-theme #language-select {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #dee2e6;
+}
+
+body.light-theme .btn-success {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    color: #fff !important;
+}
+
+body.light-theme .btn-danger {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #fff !important;
+}
+
+body.light-theme .btn-primary {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    color: #fff !important;
+}
+
+body.light-theme .description,
+body.light-theme .examples {
+    color: #495057;
+}
+
+body.light-theme .nav-link {
+    color: #495057 !important;
+}
+
+body.light-theme .nav-link.active {
+    background-color: #5f8eed !important;
+    color: #212529 !important;
+}
+
+/* Hover effects */
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Focus effects */
+.btn:focus,
+#language-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(97, 175, 239, 0.25);
+}
+
+body.light-theme .btn:focus,
+body.light-theme #language-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Transition cho mượt mà */
+.btn,
+#language-select,
+.nav-link {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Badge style */
+.badge {
+    background-color: #98c379 !important;
+    color: #282c34 !important;
+}
+
+body.light-theme .badge {
+    background-color: #28a745 !important;
+    color: #fff !important;
+}
+
+/* Output text */
+#output {
+    color: #abb2bf;
+}
+
+body.light-theme #output {
+    color: #495057;
+}
+
+/* Code title */
+.code-title {
+    color: #abb5bf;
+    font-weight: 600;
+}
+
+body.light-theme .code-title {
+    color: #495057;
+}
+
+/* Thêm viền cho các thành phần con trong light theme */
+body.light-theme .search-container {
+    border-bottom: 1px solid #dee2e6;
+}
+
+body.light-theme #leftPanelTabs {
+    border-top: 1px solid #dee2e6;
+}
+
+body.light-theme .nav-tabs {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+body.light-theme .nav-link.active {
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+/* Dark theme (mặc định) */
+.middle {
+    background-color: #1f1f1f !important;
+}
+
+/* Light theme */
+body.light-theme .middle {
+    background-color: #ffffff !important;
+}
+
+/* Dark theme (mặc định) */
+.CodeMirror-linenumbers {
+    background-color: #1f1f1f !important;
+}
+
+.CodeMirror-gutter {
+    background-color: #1f1f1f !important;
+}
+
+.CodeMirror-linenumber {
+    color: #636d83 !important;
+}
+
+/* Light theme */
+body.light-theme .CodeMirror-linenumbers {
+    background-color: #ffffff !important;
+}
+
+body.light-theme .CodeMirror-gutter {
+    background-color: #ffffff !important;
+}
+
+body.light-theme .CodeMirror-linenumber {
+    color: #181a1f !important;
+}
+
+#back-to-exercise-list:hover {
+    background-color: #3e4451;
+    color: #abb2bf;
+    border-color: #181a1f;
+}
+
+
+
